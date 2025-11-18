@@ -1,4 +1,4 @@
-package mz.com.ngoca.config;
+package mz.com.ngoca.mapper;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
