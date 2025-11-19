@@ -2,6 +2,7 @@ package mz.com.ngoca.services;
 
 import mz.com.ngoca.controllers.PersonController;
 import mz.com.ngoca.data.dto.PersonDTO;
+import mz.com.ngoca.exceptio.RequiredObjectIsNullException;
 import mz.com.ngoca.exceptio.ResourceNotFoundException;
 
 import static mz.com.ngoca.mapper.ObjectMapper.parseObject;
@@ -23,18 +24,17 @@ import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 public class PersonServices {
-
-    private final AtomicLong counter = new AtomicLong();
     private Logger logger = LoggerFactory.getLogger(PersonServices.class.getName());
 
     @Autowired
     PersonRepository repository;
 
+
     public List<PersonDTO> findAll() {
+
         logger.info("Finding all People!");
 
         var persons = parseListObjects(repository.findAll(), PersonDTO.class);
-
         persons.forEach(this::addHateoasLinks);
         return persons;
     }
@@ -44,23 +44,27 @@ public class PersonServices {
 
         var entity = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
-
-        var dto = parseObject(entity, PersonDTO.class);
+        var dto =  parseObject(entity, PersonDTO.class);
         addHateoasLinks(dto);
         return dto;
     }
 
     public PersonDTO create(PersonDTO person) {
-        logger.info("Creating one Person!");
 
+        if (person == null) throw new RequiredObjectIsNullException();
+
+        logger.info("Creating one Person!");
         var entity = parseObject(person, Person.class);
 
-        var dto = parseObject(entity, PersonDTO.class);
+        var dto = parseObject(repository.save(entity), PersonDTO.class);
         addHateoasLinks(dto);
         return dto;
     }
 
     public PersonDTO update(PersonDTO person) {
+
+        if (person == null) throw new RequiredObjectIsNullException();
+
         logger.info("Updating one Person!");
         Person entity = repository.findById(person.getId())
                 .orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
@@ -71,7 +75,6 @@ public class PersonServices {
         entity.setGender(person.getGender());
 
         var dto = parseObject(repository.save(entity), PersonDTO.class);
-
         addHateoasLinks(dto);
         return dto;
     }
@@ -84,7 +87,6 @@ public class PersonServices {
                 .orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
         repository.delete(entity);
     }
-
     private void addHateoasLinks(PersonDTO dto) {
         dto.add(linkTo(methodOn(PersonController.class).findById(dto.getId())).withSelfRel().withType("GET"));
 
