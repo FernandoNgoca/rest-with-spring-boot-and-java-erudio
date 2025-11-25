@@ -1,5 +1,12 @@
 package mz.com.ngoca.controllers;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import mz.com.ngoca.controllers.docs.PersonControllerDocs;
 import mz.com.ngoca.data.dto.PersonDTO;
 import mz.com.ngoca.model.Person;
 import mz.com.ngoca.services.PersonServices;
@@ -12,7 +19,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/person/v1")
-public class PersonController {
+@Tag(name = "People", description = "Endpoints for Managing People")
+public class PersonController implements PersonControllerDocs {
 
     @Autowired
     private PersonServices service;
@@ -22,29 +30,46 @@ public class PersonController {
             MediaType.APPLICATION_JSON_VALUE,
             MediaType.APPLICATION_XML_VALUE,
             MediaType.APPLICATION_YAML_VALUE})
+   
     public List<PersonDTO> findAll() {
         return service.findAll();
     }
 
     @GetMapping(value = "/{id}",
             produces = {
-            MediaType.APPLICATION_JSON_VALUE,
-            MediaType.APPLICATION_XML_VALUE,
-            MediaType.APPLICATION_YAML_VALUE}
+                    MediaType.APPLICATION_JSON_VALUE,
+                    MediaType.APPLICATION_XML_VALUE,
+                    MediaType.APPLICATION_YAML_VALUE}
     )
+    @Operation(summary = "Find a Person",
+            description = "Find a specific Person by ID",
+            tags = {"People"},
+            responses = {
+                    @ApiResponse(description = "Success",
+                            responseCode = "200",
+                            content =
+                            @Content(schema = @Schema(implementation = PersonDTO.class))
+                    ),
+                    @ApiResponse(description = "No content", responseCode = "204", content = @Content),
+                    @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
+                    @ApiResponse(description = "Unauthorized", responseCode = "441", content = @Content),
+                    @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
+                    @ApiResponse(description = "Internal Server Error", responseCode = "500", content = @Content)
+            })
+
     public PersonDTO findById(@PathVariable("id") Long id) {
         return service.findById(id);
     }
 
     @PostMapping(
             consumes = {
-            MediaType.APPLICATION_JSON_VALUE,
-            MediaType.APPLICATION_XML_VALUE,
-            MediaType.APPLICATION_YAML_VALUE},
+                    MediaType.APPLICATION_JSON_VALUE,
+                    MediaType.APPLICATION_XML_VALUE,
+                    MediaType.APPLICATION_YAML_VALUE},
             produces = {
-            MediaType.APPLICATION_JSON_VALUE,
-            MediaType.APPLICATION_XML_VALUE,
-            MediaType.APPLICATION_YAML_VALUE}
+                    MediaType.APPLICATION_JSON_VALUE,
+                    MediaType.APPLICATION_XML_VALUE,
+                    MediaType.APPLICATION_YAML_VALUE}
     )
     public PersonDTO create(@RequestBody PersonDTO person) {
         return service.create(person);
@@ -52,13 +77,13 @@ public class PersonController {
 
     @PutMapping(
             consumes = {
-            MediaType.APPLICATION_JSON_VALUE,
-            MediaType.APPLICATION_XML_VALUE,
-            MediaType.APPLICATION_YAML_VALUE},
+                    MediaType.APPLICATION_JSON_VALUE,
+                    MediaType.APPLICATION_XML_VALUE,
+                    MediaType.APPLICATION_YAML_VALUE},
             produces = {
-            MediaType.APPLICATION_JSON_VALUE,
-            MediaType.APPLICATION_XML_VALUE,
-            MediaType.APPLICATION_YAML_VALUE}
+                    MediaType.APPLICATION_JSON_VALUE,
+                    MediaType.APPLICATION_XML_VALUE,
+                    MediaType.APPLICATION_YAML_VALUE}
     )
     public PersonDTO update(@RequestBody PersonDTO person) {
         return service.update(person);

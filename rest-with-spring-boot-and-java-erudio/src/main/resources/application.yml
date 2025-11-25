@@ -17,3 +17,8 @@ logging:
   level:
      #root: WARN
     mz.com.ngoca: DEBUG
+  Spring-doc:
+    paths-to-mathc: /api/**/v1/**
+    swagger-ui:
+      use-root-path: true
+
