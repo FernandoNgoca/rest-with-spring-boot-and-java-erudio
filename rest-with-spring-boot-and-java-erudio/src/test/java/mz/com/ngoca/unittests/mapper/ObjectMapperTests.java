@@ -1,4 +1,4 @@
-package mz.com.ngoca.unitetests.mapper;
+package mz.com.ngoca.unittests.mapper;
 
 import static mz.com.ngoca.mapper.ObjectMapper.parseListObjects;
 import static mz.com.ngoca.mapper.ObjectMapper.parseObject;
@@ -8,7 +8,7 @@ import java.util.List;
 
 import mz.com.ngoca.data.dto.PersonDTO;
 import mz.com.ngoca.model.Person;
-import mz.com.ngoca.unitetests.mapper.mocks.MockPerson;
+import mz.com.ngoca.unittests.mapper.mocks.MockPerson;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

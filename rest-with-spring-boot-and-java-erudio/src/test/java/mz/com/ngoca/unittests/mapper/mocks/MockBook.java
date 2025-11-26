@@ -1,4 +1,4 @@
-package mz.com.ngoca.unitetests.mapper.mocks;
+package mz.com.ngoca.unittests.mapper.mocks;
 
 import java.util.ArrayList;
 import java.util.Date;

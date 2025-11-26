@@ -1,10 +1,11 @@
-package mz.com.ngoca.services;
+package mz.com.ngoca.unittests.services;
 
 import mz.com.ngoca.data.dto.BookDTO;
 import mz.com.ngoca.exceptio.RequiredObjectIsNullException;
 import mz.com.ngoca.model.Book;
 import mz.com.ngoca.repository.BookRepository;
-import mz.com.ngoca.unitetests.mapper.mocks.MockBook;
+import mz.com.ngoca.services.BookServices;
+import mz.com.ngoca.unittests.mapper.mocks.MockBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;

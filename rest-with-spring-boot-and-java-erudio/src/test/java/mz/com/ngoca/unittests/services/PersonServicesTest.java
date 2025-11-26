@@ -1,16 +1,15 @@
-package mz.com.ngoca.services;
+package mz.com.ngoca.unittests.services;
 
 
 import mz.com.ngoca.data.dto.PersonDTO;
 import mz.com.ngoca.exceptio.RequiredObjectIsNullException;
 import mz.com.ngoca.model.Person;
 import mz.com.ngoca.repository.PersonRepository;
-import mz.com.ngoca.unitetests.mapper.mocks.MockPerson;
+import mz.com.ngoca.services.PersonServices;
+import mz.com.ngoca.unittests.mapper.mocks.MockPerson;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

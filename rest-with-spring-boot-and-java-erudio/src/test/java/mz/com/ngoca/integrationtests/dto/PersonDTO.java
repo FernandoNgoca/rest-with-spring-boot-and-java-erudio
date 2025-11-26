@@ -1,11 +1,12 @@
-package mz.com.ngoca.data.dto;
+package mz.com.ngoca.integrationtests.dto;
 
-import org.springframework.hateoas.RepresentationModel;
+import jakarta.xml.bind.annotation.XmlRootElement;
 
 import java.io.Serializable;
 import java.util.Objects;
 
-public class PersonDTO extends RepresentationModel<PersonDTO> implements Serializable {
+@XmlRootElement
+public class PersonDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -16,8 +17,7 @@ public class PersonDTO extends RepresentationModel<PersonDTO> implements Seriali
     private String gender;
     private Boolean enabled;
 
-    public PersonDTO() {
-    }
+    public PersonDTO() {}
 
     public Long getId() {
         return id;
@@ -70,13 +70,12 @@ public class PersonDTO extends RepresentationModel<PersonDTO> implements Seriali
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
         PersonDTO personDTO = (PersonDTO) o;
         return Objects.equals(id, personDTO.id) && Objects.equals(firstName, personDTO.firstName) && Objects.equals(lastName, personDTO.lastName) && Objects.equals(address, personDTO.address) && Objects.equals(gender, personDTO.gender) && Objects.equals(enabled, personDTO.enabled);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), id, firstName, lastName, address, gender, enabled);
+        return Objects.hash(id, firstName, lastName, address, gender, enabled);
     }
 }

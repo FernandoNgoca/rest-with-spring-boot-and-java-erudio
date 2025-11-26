@@ -1,4 +1,4 @@
-package mz.com.ngoca.unitetests.mapper.mocks;
+package mz.com.ngoca.unittests.mapper.mocks;
 
 import mz.com.ngoca.data.dto.PersonDTO;
 import mz.com.ngoca.model.Person;
