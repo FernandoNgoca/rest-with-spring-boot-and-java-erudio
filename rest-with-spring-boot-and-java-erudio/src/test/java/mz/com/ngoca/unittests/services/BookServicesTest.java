@@ -1,7 +1,7 @@
 package mz.com.ngoca.unittests.services;
 
 import mz.com.ngoca.data.dto.BookDTO;
-import mz.com.ngoca.exceptio.RequiredObjectIsNullException;
+import mz.com.ngoca.exception.RequiredObjectIsNullException;
 import mz.com.ngoca.model.Book;
 import mz.com.ngoca.repository.BookRepository;
 import mz.com.ngoca.services.BookServices;

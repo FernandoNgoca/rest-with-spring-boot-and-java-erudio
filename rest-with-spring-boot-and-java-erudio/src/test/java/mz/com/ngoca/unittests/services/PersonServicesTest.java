@@ -2,7 +2,7 @@ package mz.com.ngoca.unittests.services;
 
 
 import mz.com.ngoca.data.dto.PersonDTO;
-import mz.com.ngoca.exceptio.RequiredObjectIsNullException;
+import mz.com.ngoca.exception.RequiredObjectIsNullException;
 import mz.com.ngoca.model.Person;
 import mz.com.ngoca.repository.PersonRepository;
 import mz.com.ngoca.services.PersonServices;

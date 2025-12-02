@@ -1,4 +1,4 @@
-package mz.com.ngoca.exceptio;
+package mz.com.ngoca.exception;
 
 import java.util.Date;
 

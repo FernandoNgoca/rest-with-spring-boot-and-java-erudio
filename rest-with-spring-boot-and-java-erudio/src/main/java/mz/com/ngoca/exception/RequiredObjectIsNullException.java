@@ -1,4 +1,4 @@
-package mz.com.ngoca.exceptio;
+package mz.com.ngoca.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
