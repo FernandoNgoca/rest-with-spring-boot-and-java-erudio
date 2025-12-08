@@ -22,6 +22,11 @@ spring:
       hibernate:
     show-sql: false
     open-in-view: false
+  security:
+    jwt:
+      token:
+        secret-key: 53cr37
+        expire-lenght: 3600000
   mail:
     host: smtp.gmail.com
     port: 587

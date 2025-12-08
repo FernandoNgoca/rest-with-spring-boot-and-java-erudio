@@ -20,6 +20,11 @@ spring:
       hibernate:
     show-sql: false
     open-in-view: false
+  security:
+    jwt:
+      token:
+        secret-key: 53cr37
+        expire-lenght: 3600000
   mail:
     host: smtp.gmail.com
     port: 587
@@ -40,7 +45,9 @@ logging:
      #root: WARN
     mz.com.ngoca: DEBUG
   Spring-doc:
-    paths-to-mathc: /api/**/v1/**
+    paths-to-match:
+      - /auth/**
+      - /api/**/v1/**
     swagger-ui:
       use-root-path: true
 
